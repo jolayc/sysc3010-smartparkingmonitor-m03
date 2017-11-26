@@ -37,14 +37,16 @@ class MonitoringNode:
     def setDistance(self, distance):
         self.distance = distance
         
-    def getTimer(self):
-        return self.elapsed
-        
     def setTimer(self):
         if(self.start > 0):
             self.elapsed = time.time() - self.start
         else:
             self.elapsed = 0
+
+    def getTimer(self):
+        return self.elapsed
+        
+   
 
     def setStart(self):
         self.start = time.time()
