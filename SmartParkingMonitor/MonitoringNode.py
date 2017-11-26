@@ -18,12 +18,12 @@ class MonitoringNode:
         return (self.distance > 0 and self.distance <= self.max_range)
     
     def isOverlimit(self):
-        return (self.elapsed > 900)
+        return (self.elapsed > 900) #900 is 15 mins in seconds 
     
     def isOccupied(self):
         return self.occupied
     
-    def update(self):
+    def update(self): #starts timer if occupied, reset if not 
         return 0
     
     # Getters and Setters
@@ -45,9 +45,7 @@ class MonitoringNode:
 
     def setStart(self):
         self.start = time.time()
-        
-    def isOccupied(self):
-        return self.occupied
+       
         
     def setOccupied(self, occupied):
         self.occupied = occupied
