@@ -1,3 +1,6 @@
+#https://github.com/jolayc/sysc3010-smartparkingmonitor/blob/master/SmartParkingMonitor/MonitoringNode.py
+#Hussein Mourad
+#SMART PARKING MONITOR 3
 import time, datetime
 
 class MonitoringNode:
