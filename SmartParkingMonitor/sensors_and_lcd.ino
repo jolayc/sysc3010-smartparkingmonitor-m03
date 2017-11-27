@@ -3,14 +3,15 @@
  * i. Each node check if something is within its range
  * ii. Node identification and distance detected
  * is sent through serial port to RPi
+ * iii. Timer values are displayed on LCD connected to Arduino
  */
-#include <Wire.h>
+#include <Wire.h> //I2C connection Library
 #include <LiquidCrystal_I2C.h> // LCD I2C library
 #include <TimeLib.h> // Time keeping library
 #include <NewPing.h> // Distance sensor library
 
 #define SONAR_NUM 3 // number of sensors
-#define MAX_DISTANCE 8 // max detection distance is 10 cm
+#define MAX_DISTANCE 8 // max detection distance is 8 cm
 #define PING_INTERVAL 33 // used for pinging distance sensors
 
 boolean newData = false; // new data available flag
@@ -30,6 +31,7 @@ NewPing sonar[SONAR_NUM] = { // array of distance sensors
 };
 
 void setup() {
+  // Initialize LCD
     lcd.init();
     lcd.backlight();
     Serial.begin(9600);
@@ -50,6 +52,7 @@ void loop() {
       sonar[currentSensor].ping_timer(echoCheck); // Do the ping (processing continues, interrupt will call echoCheck to look for echo).
     }
   }
+  // Print timer values
   lcd.setCursor(0,0);
   lcd.print("A ");
   lcd.print(minute(timers[0]));
@@ -77,7 +80,7 @@ void echoCheck() { // If ping received, set the sensor distance to array.
   newData = true;
 }
 
-void oneSensorCycle() { // Sensor ping cycle complete, do something with the results.
+void oneSensorCycle() { // Sensor ping cycle complete, print distance values to serial and call checkNode()
   if(newData) {
     for(uint8_t i = 0; i < SONAR_NUM; i++) {
       Serial.print(i);
@@ -91,14 +94,17 @@ void oneSensorCycle() { // Sensor ping cycle complete, do something with the res
   }
 }
 
+// Set timer value
 time_t setTimer(time_t start) {
  return now() - start; 
 }
 
+// Set start timer value
 time_t startTimer() {
  return now(); 
 }
 
+// Modify timer values based on node ID
 void checkNode(uint8_t ID, unsigned int distance) {
  if(distance > 0 && distance <= MAX_DISTANCE) {
    if(start[ID] == 0) {
