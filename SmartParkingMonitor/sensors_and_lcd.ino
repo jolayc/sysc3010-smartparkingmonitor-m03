@@ -1,5 +1,6 @@
-/* https://github.com/jolayc/sysc3010-smartparkingmonitor/blob/master/SmartParkingMonitor/sensors_and_lcd.ino */
-/* SYSC3010 M03
+/* https://github.com/jolayc/sysc3010-smartparkingmonitor/blob/master/SmartParkingMonitor/sensors_and_lcd.ino
+ * @author Joseph Laycano
+ * SYSC3010 M03
  * This sketch performs the following:
  * i. Each node check if something is within its range
  * ii. Node identification and distance detected
