@@ -4,16 +4,13 @@
 import time, datetime
 
 class MonitoringNode:
-
-    # Default values
-    start = 0
-    elapsed = 0
-    
-    def __init__(self, ID, distance, occupied, max_range):
+    def __init__(self, ID, distance, occupied, max_range, start, elapsed)
         self.ID = ID
         self.distance = distance
         self.occupied = occupied
         self.max_range = max_range
+        self.start = start
+        self.elapsed = elapsed
         
     # Main functions
     
@@ -42,7 +39,7 @@ class MonitoringNode:
         return self.distance
     
     def setDistance(self, distance):
-        self.distance = distance
+        self.distance = int(distance)
         
     def setTimer(self):
         if(self.start > 0):
