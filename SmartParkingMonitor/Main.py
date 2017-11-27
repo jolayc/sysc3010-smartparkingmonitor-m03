@@ -1,24 +1,28 @@
+# https://github.com/jolayc/sysc3010-smartparkingmonitor/edit/master/SmartParkingMonitor/Main.py
+# @author Osama Rachid
+
 import serial, time, datetime, socket
-from MonitoringNode import MonitoringNode
+from MonitoringNode import MonitoringNode # general utility class
 
-#port = '/dev/ttyACM0'
-#baud = 9600
+port = '/dev/ttyACM0' # port where arduino is connected
+baud = 9600 # arduino baud rate for serial communication
 
-#ser = serial.Serial(port, baud)
+ser = serial.Serial(port, baud) # create Serial object
 
-arduino_readings = [0,3,0,2,0,1,9]
-
-valid_readings = False
+valid_readings = False # used for 
 
 A = MonitoringNode(0,0,False,8)
 B = MonitoringNode(1,0,False,8)
 C = MonitoringNode(2,0,False,8)
 
 data = {}
+
 while True:
-    ser.flush()
+    ser.flush() # refresh serial port
 
     arduino_readings = ser.readline().split(b' ')
+    # formatted: [ID, distance, ID, distance, ID, distance, null-terminating char]
+    
     if(len(arduino_readings) == 7):
         valid_readings = True
     else:
@@ -33,4 +37,5 @@ while True:
         B.update()
         C.update()
 
-        print(int(A.getTime()), " ", int(B.getTime()), " ", int(C.getTime()))
+       # print(int(A.getTime()), " ", int(B.getTime()), " ", int(C.getTime()))
+       # TO-DO: send data to server Pi
