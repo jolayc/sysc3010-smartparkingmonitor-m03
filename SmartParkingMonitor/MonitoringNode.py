@@ -27,7 +27,12 @@ class MonitoringNode:
         return self.occupied
     
     def update(self): #starts timer if occupied, reset if not 
-        return 0
+        if(self.carArrived()):
+            self.elapsed = time.time()
+        else:
+            self.resetTimer()   
+        
+    
     
     # Getters and Setters
 
