@@ -1,4 +1,4 @@
-import serial, time, datetime, socket, threading
+import serial, time, datetime, socket
 from MonitoringNode import MonitoringNode
 
 #port = '/dev/ttyACM0'
@@ -15,15 +15,10 @@ B = MonitoringNode(1,0,False,8)
 C = MonitoringNode(2,0,False,8)
 
 data = {}
+while True:
+    ser.flush()
 
-def looper():
-    threading.Timer(1, looper).start()
-    checkNodes()
-
-def checkNodes():
-    #ser.flush()
-
-    #arduino_readings = ser.readline().split(b' ')
+    arduino_readings = ser.readline().split(b' ')
     if(len(arduino_readings) == 7):
         valid_readings = True
     else:
@@ -34,10 +29,8 @@ def checkNodes():
         B.setDistance(arduino_readings[3])
         C.setDistance(arduino_readings[5])
 
-        A.updateInfo()
-        B.updateInfo()
-        C.updateInfo()
+        A.update()
+        B.update()
+        C.update()
 
-        print("Done...")
-
-looper()
+        print(int(A.getTime()), " ", int(B.getTime()), " ", int(C.getTime()))
