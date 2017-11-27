@@ -57,22 +57,40 @@ void loop() {
   // Print timer values
   lcd.setCursor(0,0);
   lcd.print("A ");
+  if(minute(timers[0]) < 10) {
+	lcd.print(0);
+  }
   lcd.print(minute(timers[0]));
   lcd.print(":");
+  if(second(timers[0]) < 10) {
+	lcd.print(0);
+  }
   lcd.print(second(timers[0]));
   
   lcd.print(" ");
   
   lcd.print("B ");
+  if(minute(timers[1]) < 10) {
+	lcd.print(0);
+  }
   lcd.print(minute(timers[1]));
   lcd.print(":");
+  if(second(timers[1]) < 10) {
+	lcd.print(0);
+  }
   lcd.print(second(timers[1]));
   
   lcd.setCursor(0,1);
   
   lcd.print("C ");
+  if(minute(timers[2]) < 10) {
+	lcd.print(0);
+  }
   lcd.print(minute(timers[2]));
   lcd.print(":");
+  if(second(timers[2]) < 10) {
+	lcd.print(0);
+  }
   lcd.print(second(timers[2]));
 }
 
