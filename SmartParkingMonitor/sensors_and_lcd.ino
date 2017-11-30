@@ -57,41 +57,12 @@ void loop() {
   // Print timer values
   lcd.setCursor(0,0);
   lcd.print("A ");
-  if(minute(timers[0]) < 10) {
-	lcd.print(0);
-  }
-  lcd.print(minute(timers[0]));
-  lcd.print(":");
-  if(second(timers[0]) < 10) {
-	lcd.print(0);
-  }
-  lcd.print(second(timers[0]));
-  
-  lcd.print(" ");
-  
-  lcd.print("B ");
-  if(minute(timers[1]) < 10) {
-	lcd.print(0);
-  }
-  lcd.print(minute(timers[1]));
-  lcd.print(":");
-  if(second(timers[1]) < 10) {
-	lcd.print(0);
-  }
-  lcd.print(second(timers[1]));
-  
-  lcd.setCursor(0,1);
-  
+  lcdPrint(0);
+  lcd.print(" B ");
+  lcdPrint(1);
+  lcd.setCursor(1,0);
   lcd.print("C ");
-  if(minute(timers[2]) < 10) {
-	lcd.print(0);
-  }
-  lcd.print(minute(timers[2]));
-  lcd.print(":");
-  if(second(timers[2]) < 10) {
-	lcd.print(0);
-  }
-  lcd.print(second(timers[2]));
+  lcdPrint(2);
 }
 
 void echoCheck() { // If ping received, set the sensor distance to array.
@@ -112,6 +83,16 @@ void oneSensorCycle() { // Sensor ping cycle complete, print distance values to 
     newData = false;
     Serial.println();
   }
+}
+
+void lcdPrint(uint8_t ID) {
+	if(cm[ID] == 0 || cm[ID] > MAX_DISTANCE) {
+		lcd.print("  :  ");	
+	} else {
+		lcd.print(minute(timers[ID]);
+		lcd.print(":");
+		lcd.print(second(timers[ID]);
+	}
 }
 
 // Set timer value
