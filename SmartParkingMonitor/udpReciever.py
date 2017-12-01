@@ -18,5 +18,17 @@ while True:
     data = json.loads(buf)
     #print (data)
     print (data["car arrived"])
+    a = data["car arrived"]
+    b = data["is overlimit"]
+    arrived = 0
+    overlimit = 0   
     
+    if a == True:
+        arrived = arrived + 1
+        #write a to database
+    if b == True:
+        overlimit = overlimit + 1
+        #write b to database
+        
+   
 s.shutdown(1)
