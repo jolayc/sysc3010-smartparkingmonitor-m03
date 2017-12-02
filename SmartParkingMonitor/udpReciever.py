@@ -17,18 +17,42 @@ while True:
     #print ("Received %s bytes from %s %s: " % (len(buf), address, buf ))
     data = json.loads(buf)
     #print (data)
-    print (data["car arrived"])
-    a = data["car arrived"]
-    b = data["is overlimit"]
-    arrived = 0
-    overlimit = 0   
+
+    print (data)
+    elem1 = data[0]
+    elem2 = data[1]
+    elem3 = data[2]
+    elem1 = data[0]
+    elem2 = data[1]
+    elem3 = data[2]
+    a=0
+    b=0
+    c=0
+    d=0
+    e=0
+    f=0
+
+    if elem1 == True:
+        a = a+1
+        #UPdate database
+    if elem2 == True:
+        b = b+1
+        #UPdate database
+    if elem2 == True:
+        c = c+1
+        #UPdate database
+    if elem2 == True:
+        d = d+1
+        #UPdate database
+    if elem2 == True:
+        e = e+1
+        #UPdate database
+    if elem2 == True:
+        f = f+1
+        #UPdate database
+    print(elem1)
+    print(elem2)
+    print(elem3)
     
-    if a == True:
-        arrived = arrived + 1
-        #write a to database
-    if b == True:
-        overlimit = overlimit + 1
-        #write b to database
-        
-   
 s.shutdown(1)
+
