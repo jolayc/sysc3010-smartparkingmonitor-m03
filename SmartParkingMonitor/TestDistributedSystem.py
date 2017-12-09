@@ -36,14 +36,7 @@ finally:
     connection.close()
 """
 connection = pymysql.connect(host = 'localhost', user='root',port=3306, password='', db='parking')
-result = ''
-parked1 =  ''
-parked2 =  ''
-parked3 =  ''
 
-overtime1= ''
-overtime2= ''
-overtime3= ''
 try:
     
     with connection.cursor() as cursor:
