@@ -51,7 +51,7 @@ while True:
     if elem1 == True:
         a = int(a) +1
         a = str(a)
-        cur.execute("UPDATE spots1 SET parked= true WHERE id = 1")
+        cur.execute("UPDATE spots1 SET parked= true WHERE id = 1")#can be made modular (was done this way to save time)
         cur.execute("UPDATE spots SET parked = %s WHERE id = 1", (a))
     if elem2 == True:
         b = int(b) +1
