@@ -1,7 +1,7 @@
 # Source: https://pymotw.com/2/socket/udp.html
 #!/usr/bin/python
 # @author Utkarsh Anand
-print("Content-Type: text/html")
+print("Content-Type: text/html") #keep to notify apache what kind of file to expect. 
 print()
 
 import pymysql, socket, sys, time, json
@@ -100,7 +100,7 @@ while True:
 ##
 s.shutdown(1)
 """
-a = c.fetchall();
+a = c.fetchall(); # retreiving the database
 print(a)
 print([(r[0], r[1], r[2]) for r in c.fetchall()])
 """
